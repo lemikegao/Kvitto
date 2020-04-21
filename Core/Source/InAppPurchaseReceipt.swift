@@ -80,6 +80,13 @@ import DTFoundation
     fileprivate(set) public var webOrderLineItemIdentifier: Int?
     
     /**
+    This key is only present for auto-renewable subscription receipts. The value for this key is "true" if the customer’s subscription is currently in an introductory price period, or "false" if not.
+
+    Note: If a previous subscription period in the receipt has the value “true” for either the is_trial_period or the is_in_intro_offer_period key, the user is not eligible for a free trial or introductory price within that subscription group.
+     */
+    fileprivate(set) public var isInIntroOfferPeriod: Bool?
+    
+    /**
      ObjectiveC support of webOrderLineItemIdentifier(NSInteger:- webOrderLineItemIdentifierNumber.integerValue)
      The primary key for identifying subscription purchases.
      */
@@ -164,6 +171,9 @@ import DTFoundation
             
         case 1712:
             cancellationDate = try _dateFromData(data)
+            
+        case 1719:
+            isInIntroOfferPeriod = try _boolFromData(data)   
             
         default:
             // all other types are private
