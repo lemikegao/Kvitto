@@ -63,23 +63,11 @@ internal func _optionalStringFromData(_ data: Data) throws -> String?
     return string
 }
 
-internal func _boolFromData(_ data: Data) throws -> Bool?
+internal func _boolFromData(_ data: Data) throws -> Bool
 {
-    guard let string = try _stringFromData(data) as? String
-    else {
-        return nil
-    }
+    let int = try _intFromData(data)
     
-    if string == "true"
-    {
-        return true
-    }
-    else if string == "false"
-    {
-        return false
-    }
-    
-    return nil
+    return int != 0
 }
 
 internal func _dateFromData(_ data: Data) throws -> Date?
