@@ -65,7 +65,7 @@ internal func _optionalStringFromData(_ data: Data) throws -> String?
 
 internal func _boolFromData(_ data: Data) throws -> Bool?
 {
-    guard let string = try _stringFromData(data)
+    guard let string = try _stringFromData(data) as? String
     else {
         return nil
     }
